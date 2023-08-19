@@ -5,6 +5,7 @@ Azure containers for continerization<br>
 Azure Cosmos nosql database<br>
 Node.js<br>
 Express.js<br>
+Firebase Auth for authenication purposes <br>
 
 ## Important notes
 AKV name is reddam-vault<br>
