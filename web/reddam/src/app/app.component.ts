@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'reddam';
+
+  //This would allow us to render login or sign up form items
+  isLogin: boolean = true;
+  //Updates the isLogin property
+  updateIsLogin() {
+    this.isLogin = !this.isLogin;
+  }
 }

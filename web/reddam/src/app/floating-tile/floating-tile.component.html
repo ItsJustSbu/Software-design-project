@@ -1,0 +1,17 @@
+<div class="">
+  {{isLogin}}
+  <!-- To render on login part -->
+  <div *ngIf="isLogin">
+    <h1>Welcome, Back!</h1>
+    <h4>Emabrk on a Journey of Giving Back: Log in to coninue. Don't have an account? Click the button beclow to create
+      an account.</h4>
+    <app-basic-button [label]="'Sign Up'" [onClick]="updateIsLogin"></app-basic-button>
+  </div>
+
+  <!-- To render on sign up part part -->
+  <div *ngIf="!isLogin">
+    <h1>Hello, There!</h1>
+    <h4>Emabrk on a Journey of Giving Back: Already have an account? Click the button below to log in.</h4>
+    <app-basic-button [label]="'Log In'" [onClick]="updateIsLogin"></app-basic-button>
+  </div>
+</div>

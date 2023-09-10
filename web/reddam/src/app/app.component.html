@@ -1,1 +1,15 @@
-<meta>
+<div class="flex fixed top-0 bottom-0 right-0 left-0">
+  <!--The floating tile -->
+  <div class="basis-4/12">
+    <app-floating-tile [isLogin] = "isLogin" [updateIsLogin]="updateIsLogin"></app-floating-tile>
+  </div>
+
+  <!-- forms -->
+  <div class="basis-8/12">
+    <!-- log-in form -->
+    <app-log-in></app-log-in>
+
+    <!-- sign-up form -->
+    <app-sign-up></app-sign-up>
+  </div>
+</div>
