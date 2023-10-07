@@ -1,0 +1,11 @@
+<div class="w-[320px] bg-navy h-full text-white flex flex-col items-center">
+  <img src="assets/reddam-logo2.svg" class="w-6/12 mt-10"/>
+
+  <aside class="mt-[100px]">
+    <ul>
+      <li *ngFor="let item of sidebarItems" class="mb-[15px] w-[250px] h-[50px] rounded-full pl-7 pt-2 hover:bg-white hover:text-mustard">
+        <a [routerLink] = "item.route" routerLinkActive="active" class="text-lg">{{item.title}}</a>
+      </li>
+    </ul>
+  </aside>
+</div>
