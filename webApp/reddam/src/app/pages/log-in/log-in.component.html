@@ -3,7 +3,8 @@
   <div class="bg-navy basis-5/12 flex flex-col items-center justify-center text-white">
     <h1 class="text-4xl font-bold mb-[70px]">Welcome, Back!</h1>
     <p class=" text-lg w-5/6 text-center mb-[80px]">Embark on a journey of Giving Back. Log in to Start. New here? Click the button below to create an account</p>
-    <app-button [label]="'Sign Up'"></app-button>
+    <!-- <app-button id="login-sign" [label]="'Sign Up'" routerLink="/sign-up"></app-button> -->
+    <button class="login-sign" routerLink="/sign-up">Sign Up</button>
 
     <!-- Logo -->
     <div class="absolute bottom-0 left-0">
@@ -15,7 +16,7 @@
     <h1 class="text-5xl font-semibold mb-[90px]">Log In</h1>
     <input type="text" placeholder="Username" class="bg-[#F3F3F2] w-[500px] h-[60px] rounded-md pl-3 mb-[30px]"/>
     <input type="password" placeholder="Password" class="bg-[#F3F3F2] w-[500px] h-[60px] rounded-md pl-3 mb-[30px]" />
-    <button class="border rounded-full w-[150px] h-[50px] mt-[100px]">Log In</button>
+    <button id="login-btn" class="border rounded-full w-[150px] h-[50px] mt-[100px]" routerLink="/dashboard">Log In</button>
     <app-input></app-input>
   </form>
 

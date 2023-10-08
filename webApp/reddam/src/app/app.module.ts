@@ -11,8 +11,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { NgIconsModule } from '@ng-icons/core';
-import { heroUsers } from '@ng-icons/heroicons/outline'
-import {} from '@00.'
+import { heroUsers } from '@ng-icons/heroicons/outline';
 
 @NgModule({
   declarations: [
