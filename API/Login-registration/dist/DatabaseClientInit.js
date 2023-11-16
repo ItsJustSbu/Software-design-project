@@ -9,8 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { CosmosClient } from "@azure/cosmos";
 const InitialiseDatabaseClient = () => __awaiter(void 0, void 0, void 0, function* () {
-    const endpoint = "https://reddamdbacc.documents.azure.com:443/";
-    const key = "r4D6DRNU0iAk3hrpHmEZjwz7txrRIGcfxzA53ce53sq5rEjJD7gody0TwYJsC1n5T99WqHlSn5rtACDbqeAfAQ==";
+    const endpoint = "";
+    const key = "";
     const client = new CosmosClient({ endpoint, key });
     return yield client;
 });
