@@ -3,6 +3,8 @@ import EngagementTile from "../components/EngagementTile";
 import ActiveCalimsTile from "../components/ActiveClaims";
 import TopClasses from "../components/TopClasses";
 import TopCommunityEngagers from "../components/TopCommunityEngagers";
+import Reports from "../components/Reports";
+import StaffResponsibilities from "../components/StaffResponsibilities";
 
 
 export default function Home() {
@@ -16,9 +18,9 @@ export default function Home() {
           </div>
           
       </div>
-      <div className={`flex mt-[30px] justify-between`}>
+      <div className={`flex mt-[20px] justify-between gap-[30px]`}>
         <div className={`basis-7/12`}>
-            <div className={`flex gap-[30px] `}>
+            <div className={`flex gap-[30px] mb-[25px]`}>
               <EngagementTile />
               <ActiveCalimsTile/>
             </div>
@@ -26,10 +28,18 @@ export default function Home() {
               <TopCommunityEngagers/>
             </div>
         </div>
-        <div className="bg-mustard basis-5/12">
-          <TopClasses/>
-        </div>
+          <div className=" basis-5/12">
+              <TopClasses/>
           </div>
+      </div>
+      <div className={'flex mt-[30px] gap-[30px]'}>
+        <div className={'basis-5/12'}>
+          <Reports/>
+        </div>
+        <div className={'basis-7/12'}>
+          <StaffResponsibilities/>
+        </div>
+      </div>
     </div>
   )
 }
