@@ -22,6 +22,11 @@ export default function Sidebar(props) {
     const navigate = useNavigate();
     const [clicked, setClicked] = useState(0);
 
+    const logout = (e) => {
+        e.preventDefault();
+        navigate("/");
+    }
+
     props.updatePageName(navItems[clicked].item)
 
   return (
@@ -37,9 +42,9 @@ export default function Sidebar(props) {
                     </li>
                 ))}
           </ul>
-          <button className={` absolute text-3xl text-white bottom-[30px]`}>
+         <button className={` absolute text-3xl text-white bottom-[30px]`} onClick={logout}>
               <IoExitOutline/>
-          </button>
+                </button>
           <button className={`absolute top-[30px] left-[325px] bg-white rounded-full h-[30px] w-[30px] flex items-center justify-center shadow-2xl drop-shadow-2xl outline-gray border border-[#D4D3D3]`}>
               <IoIosArrowBack />
           </button>

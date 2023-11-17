@@ -3,7 +3,7 @@ import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "fire
 import bodyParser from "body-parser";
 import init from "./firebaseinit.js";
 import InitialiseDatabaseClient from "./DatabaseClientInit.js";
-import { CosmosClient, DatabaseResponse } from "@azure/cosmos";
+
 
 const app : Application = express();
 
@@ -16,9 +16,21 @@ const auth = init();
 app.post("/studentsignin", (req: Request, res: Response) => {
 
     signInWithEmailAndPassword(auth, req.body.email, req.body.password)
-    .then((userCredential)=>{
+    .then(async (userCredential)=>{
         const user = userCredential.user;
-        res.status(200).json({message: "User signed in successfully", user: user});
+        const dbClient = await InitialiseDatabaseClient();
+
+        const {database} : any = await dbClient.databases.createIfNotExists({ id: "ReddamDatabase" });
+
+        const {container} : any = await database.containers.createIfNotExists({ id: "Students" });
+
+        //query using email and password and get the name
+        const response = await container.items.query(`SELECT * FROM c WHERE c.email = "${req.body.email}" AND c.password = "${req.body.password}"`).fetchAll();
+        const name = response.resources[0].name;
+        const id = response.resources[0].id;
+        
+
+        res.status(200).json({message: "User signed in successfully", response: response.resources[0]});
     })
     .catch((error)=>{
         res.status(400).json({message: "User sign in failed", error: error});
@@ -41,7 +53,7 @@ app.post("/studentregister", (req: Request, res: Response) =>{
 
         const response = await container.items.create(req.body);        
 
-        res.status(200).json({message: "User registered successfully", response: response.resource.id});
+        res.status(200).json({message: "User registered successfully", response: response.resource});
 
     })
     .catch((error)=>{
@@ -54,7 +66,7 @@ app.put("/studentupdate", async (req: Request, res: Response) =>{
         const dbClient = await InitialiseDatabaseClient();
     
         const {database} : any = await dbClient.databases.createIfNotExists({ id: "ReddamDatabase" });
-    
+        
         const {container} : any = await database.containers.createIfNotExists({ id: "Students" });
     
         const response = await container.items.upsert(req.body);
@@ -98,5 +110,34 @@ app.post("/teacherregister", (req:Request, res:Response)=>{
     );
 });
 
+app.get("/getStudent/:id", async (req:Request, res:Response)=>{
 
-app.listen(80, () => console.log("Server running on port 8080"));
+    const id = req.params.id;
+    const dbClient = await InitialiseDatabaseClient();
+    const {database} : any = dbClient.databases.createIfNotExists({ id: "ReddamDatabase" });
+    const {container} : any = database.containers.createIfNotExists({ id: "Students" });
+    const response = await container.items.query(`SELECT * FROM c WHERE c.id = "${id}"`).fetchAll();
+    if (response.resources.length > 0){
+        res.status(200).json({message: "User found", response: response.resources[0]});
+    }else{
+        res.status(400).json({message: "User not found"});
+    }
+
+});
+
+app.get("/getTeacher/:id", async (req:Request, res:Response)=>{
+
+    const id = req.params.id;
+    const dbClient = await InitialiseDatabaseClient();
+    const {database} : any = dbClient.databases.createIfNotExists({ id: "ReddamDatabase" });
+    const {container} : any = database.containers.createIfNotExists({ id: "teachers" });
+    const response = await container.items.query(`SELECT * FROM c WHERE c.id = "${id}"`).fetchAll();
+    if (response.resources.length > 0){
+        res.status(200).json({message: "User found", response: response.resources[0]});
+    }else{
+        res.status(400).json({message: "User not found"});
+    }
+});
+
+
+app.listen(80, () => console.log("Server running on port 80"));
