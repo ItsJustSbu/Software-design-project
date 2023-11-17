@@ -1,5 +1,5 @@
 {
-  "name": "job-dispatch",
+  "name": "loghours",
   "version": "1.0.0",
   "type": "module",
   "main": "index.js",
@@ -19,7 +19,6 @@
   "description": "",
   "dependencies": {
     "@azure/cosmos": "^4.0.0",
-    "axios": "^1.6.2",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
